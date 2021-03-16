@@ -6,46 +6,32 @@ namespace StosStrukturalnie
     {
         static void Main(string[] args)
         {
-            var stos1 = new Stos(5);
-            var stos2 = new Stos(5);
+            int RozmiarStosu = 10;
+            var stos1 = new Stos(RozmiarStosu);
+            var stos2 = new Stos(RozmiarStosu);
 
-            Console.WriteLine(stos1.Full());
-            Console.WriteLine(stos1.Empty());
-            stos1.Push(1);
-            stos1.Push(2);
-            Console.WriteLine(stos1.Empty());
-            stos1.Push(3);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            Console.WriteLine(stos1.Full());
-           
-            stos1.Display();
+            Console.WriteLine("Podaj 10 liczb: ");
+            for (int i = 0; i < RozmiarStosu; i++)
+            {
+                stos1.Push(Convert.ToInt32(Console.ReadLine()));
+            }
 
-            stos2.Push(3);
-            stos2.Push(2);
-            stos2.Push(4);
-            Console.WriteLine(stos1.Full());
-             Console.WriteLine(stos1.Empty());
-            stos2.Pop();
-            stos2.Pop();
-            stos2.Display();
-            stos1.Display();
-            Console.WriteLine(stos1.Top());
-            Console.WriteLine(stos2.Top());
-            stos1.Destroy();
-            stos1.Display();
-            stos1.Push(3);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            stos1.Push(4);
-            Console.WriteLine("XD" + stos1.Count);
-            stos1.Push(4);
-            stos1.Display();
+            // alternatywa wpisywanie do testow
+           /* for(int i = 0; i < RozmiarStosu; i++)
+            {
+                stos1.Push(i);
+            }*/
+
+            Console.WriteLine("Stos 1 przy pomocy stosu 2: ");
+            for (int i =0; i < RozmiarStosu; i++)
+            { 
+                stos2.Push(stos1.Top()); //wstawiamy element z gory stosu 1 do stosu 2
+                Console.WriteLine(stos2.Top()); // wypisujemy stos numer 2
+                stos1.Count--; // przechodzimy do elementu nizej
+            }
+
+            stos1.Count = RozmiarStosu; // na koniec wracamy do poczatkowej wartosci stosu 1
+            stos1.Display(); // testowe sprawdzenie czy stos 1 nadal jest rowny stanowi poczatkowemu
         }
     }
 }
